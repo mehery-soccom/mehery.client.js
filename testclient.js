@@ -3,7 +3,8 @@ import config from '@bootloader/config';
 import prompt from 'prompt';
 
 const examples = [
-  'location_request'
+  'location_request',
+  'cta_url'
 ];
 
 for(var i in examples){
