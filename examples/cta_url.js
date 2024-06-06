@@ -3,9 +3,9 @@ import client from './../index.js';
 
 async function location_request(){
 	await client.send({
-	  "channelId": "wacfb:917738347262",
+	  "channelId": "<mry.channelId>",
 	  "to": {
-	    "phone": "918587874877"
+	    "phone": "<mry.to.phone>"
 	  },
 	  "type": "text",
 	  "text": {

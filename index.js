@@ -5,9 +5,17 @@ export default {
   async send(message){
     let domain = config.get("mry.domain");
     let apikey = config.get("mry.api.key");
-    console.log("domain",domain);
+    let channelId = config.get("mry.channelId");
+    let to_phone = config.get("mry.to.phone");
+    //console.log("domain",domain);
     //console.log("apikey",apikey);
-    console.log(message)
+    
+
+      let mssagestr = JSON.stringify(message, null, 1)
+            .replaceAll('<mry.channelId>',channelId)
+            .replaceAll('<mry.to.phone>',to_phone);
+        console.log("Request:>=========== ",mssagestr)
+
         return fetch('https://'+domain+"/xms/api/v1/message/send", {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
@@ -15,7 +23,7 @@ export default {
              "Content-Type" : "application/json",
               "x-api-key" : apikey
             },
-            body: JSON.stringify(message), // body data type must match "Content-Type" header
+            body: mssagestr,//JSON.stringify(message), // body data type must match "Content-Type" header
           },{}).catch((e) => {  
             return { text(){return JSON.stringify(e)}};
           }).then(res => res.text())
@@ -31,7 +39,7 @@ export default {
           }).catch((e) => {  
             return e;
           }).then(function(json){
-            console.log("WebaWebHook Is",json);
+            console.log("Response :==========> ",json);
             return json; 
           });
     

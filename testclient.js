@@ -14,11 +14,11 @@ for(var i in examples){
 async function init(message){
   let props = await config.manifest({
     group : "mehery",
-    props : ['mry.domain','mry.api.key']
+    props : ['mry.domain','mry.api.key','mry.channelId','mry.to.phone']
     //props : []
   });
-  prompt.start()
 
+  prompt.start();
   prompt.get("SCRIPT", function (err, result){
     let index = result.SCRIPT;
     if(index < 0 || index> examples.length){
